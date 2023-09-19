@@ -12,6 +12,8 @@ backups="
 /opt/teamviewer
 /var/log
 "
+# Write logfile
+exec >sysbackup.log 2>&1
 
 # Check if backup folder exists, create if not
 if [[ ! -e $dst_host/$src_host ]]; then
