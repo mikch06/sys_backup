@@ -13,6 +13,9 @@ backups="
 /var/log
 "
 # Write logfile
+# logtesting
+##LOGFILE="log.log"
+##exec 3>&1 1>"$LOGFILE" 2>&1
 exec >sysbackup.log 2>&1
 
 # Check if backup folder exists, create if not
