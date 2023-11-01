@@ -1,6 +1,10 @@
 # sysbackup
-Sysbackup of linux hosts, configured directory list, run by cron.
+I need a smiple backup script to just backup Linux directories to my NAS on cronjob base.
 
+Script will mount the remote filesystem on every run - it doesn't need a fix fstab entry for persistent
+storage.
+
+Create and configure mountpoints before.
 
 ## Mountpoint on your system:
 
