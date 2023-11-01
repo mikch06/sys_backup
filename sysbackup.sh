@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # mik, 2023.09.19
-# edited:
+# edited: 2023.11.01
 
 # Backup Script for unix hosts
 # Script performs a backup from local files to
@@ -9,13 +9,13 @@
 # Prepare mountpoint before!
 
 # debug
-#set -x
+set -x
 
 
 # Logfile
 LOGFILE="backup.log"
-#exec 3>&1 1>>"$LOGFILE" 2>&1
-printf "\n###\nStart backup\n"
+exec 3>&1 1>>"$LOGFILE" 2>&1
+printf "\n\n***\nStart new backup\n"
 date
 
 # Read backup config
@@ -26,18 +26,18 @@ sudo mount -t nfs $bak_mount
 
 # Check if backup folder exists, create if not
 if [[ ! -e $dst_dir/$src_dir ]]; then
-  echo "Create backup dir"
+  echo "Create backup base directory"
   mkdir $dst_dir/$src_dir
 fi
 
 # Check directory for current date
 today=$(date +%Y-%m-%d)
 if [[ ! -e $dst_dir/$src_dir/$today ]]; then
-  printf "Create backup daily dir"
+  printf "Create backup daily directory"
   mkdir $dst_dir/$src_dir/$today
 fi
 
 for path in $backups; do
-  printf "Backup of $path to $dst_dir/$src_dir/$today"
+  printf "Backup: $path to $dst_dir/$src_dir/$today"
   cp -r $path $dst_dir/$src_dir/$today
 done
