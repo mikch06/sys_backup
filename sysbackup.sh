@@ -25,19 +25,19 @@ date
 sudo mount -t nfs $bak_mount
 
 # Check if backup folder exists, create if not
-if [[ ! -e $dst_dir/$src_dir ]]; then
+if [[ ! -e $dst_dir/$(hostname) ]]; then
   echo "Create backup base directory"
-  mkdir $dst_dir/$src_dir
+  mkdir $dst_dir/$(hostname)
 fi
 
 # Check directory for current date
 today=$(date +%Y-%m-%d)
-if [[ ! -e $dst_dir/$src_dir/$today ]]; then
+if [[ ! -e $dst_dir/$(hostname)/$today ]]; then
   printf "Create backup daily directory"
-  mkdir $dst_dir/$src_dir/$today
+  mkdir $dst_dir/$(hostname)/$today
 fi
 
 for path in $backups; do
-  printf "Backup: $path to $dst_dir/$src_dir/$today"
-  cp -r $path $dst_dir/$src_dir/$today
+  printf "Backup: $path to $dst_dir/$(hostname)/$today"
+  cp -r $path $dst_dir/$(hostname)/$today
 done
