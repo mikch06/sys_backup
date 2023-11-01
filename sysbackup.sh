@@ -9,13 +9,13 @@
 # Prepare mountpoint before!
 
 # debug
-set -x
+#set -x
 
 
 # Logfile
 LOGFILE="backup.log"
 exec 3>&1 1>>"$LOGFILE" 2>&1
-printf "\n\n***\nStart new backup\n"
+printf "\n\n***\nStarting new backup\n"
 date
 
 # Read backup config
@@ -26,18 +26,18 @@ sudo mount -t nfs $bak_mount
 
 # Check if backup folder exists, create if not
 if [[ ! -e $dst_dir/$(hostname) ]]; then
-  echo "Create backup base directory"
+  echo "Create backup base directory for host $(hostname)"
   mkdir $dst_dir/$(hostname)
 fi
 
 # Check directory for current date
 today=$(date +%Y-%m-%d)
 if [[ ! -e $dst_dir/$(hostname)/$today ]]; then
-  printf "Create backup daily directory"
+  printf "Create backup daily directory $today\n"
   mkdir $dst_dir/$(hostname)/$today
 fi
 
 for path in $backups; do
-  printf "Backup: $path to $dst_dir/$(hostname)/$today"
+  printf "Backup: $path to $dst_dir/$(hostname)/$today\n"
   cp -r $path $dst_dir/$(hostname)/$today
 done
