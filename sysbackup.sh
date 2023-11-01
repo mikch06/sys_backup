@@ -39,5 +39,5 @@ fi
 
 for path in $backups; do
   printf "Backup: $path to $dst_dir/$(hostname)/$today\n"
-  cp -r $path $dst_dir/$(hostname)/$today
+  cp -r --parents $path $dst_dir/$(hostname)/$today
 done
