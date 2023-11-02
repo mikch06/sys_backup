@@ -11,6 +11,8 @@
 # debug
 #set -x
 
+# Parent directory path
+cd "$(dirname "$0")"
 
 # Logfile
 LOGFILE="backup.log"
