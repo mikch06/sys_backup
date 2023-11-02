@@ -17,7 +17,7 @@ cd "$(dirname "$0")"
 # Logfile
 LOGFILE="backup.log"
 exec 3>&1 1>>"$LOGFILE" 2>&1
-printf "\n\n***\nStarting new backup\n"
+printf "\n***\nStarting new backup\n"
 date
 
 # Read backup config
